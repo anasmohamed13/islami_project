@@ -1,6 +1,8 @@
 // ignore_for_file: sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:islamicproject/models/sura_details_model.dart';
+import 'package:islamicproject/ui/screens/sura_details/sura_details.dart';
 import 'package:islamicproject/ui/utils/app_assets.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
 import 'package:islamicproject/ui/utils/app_styles.dart';
@@ -79,21 +81,29 @@ class Quran extends StatelessWidget {
 
   Widget buildSurasList() => ListView.builder(
         itemCount: Constant.suraNames.length,
-        itemBuilder: (context, index) => Row(
-          children: [
-            Expanded(
-                child: Text(
-              Constant.suraNames[index],
-              style: AppStyle.titleTextStyle,
-              textAlign: TextAlign.center,
-            )),
-            Expanded(
-                child: Text(
-              Constant.versesNumber[index].toString(),
-              style: AppStyle.titleTextStyle,
-              textAlign: TextAlign.center,
-            )),
-          ],
+        itemBuilder: (context, index) => InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, SuraDetails.routeName,
+                arguments: SuraDetailsArgs(
+                    suraNames: Constant.suraNames[index],
+                    fileNames: '${index + 1}.txt'));
+          },
+          child: Row(
+            children: [
+              Expanded(
+                  child: Text(
+                Constant.suraNames[index],
+                style: AppStyle.titleTextStyle,
+                textAlign: TextAlign.center,
+              )),
+              Expanded(
+                  child: Text(
+                Constant.versesNumber[index].toString(),
+                style: AppStyle.titleTextStyle,
+                textAlign: TextAlign.center,
+              )),
+            ],
+          ),
         ),
       );
 }
