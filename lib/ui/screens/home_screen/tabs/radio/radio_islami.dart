@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Radio extends StatelessWidget {
-  const Radio({super.key});
+class RadioIslami extends StatelessWidget {
+  const RadioIslami({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Hdeth extends StatelessWidget {
-  const Hdeth({super.key});
+class Hadeth extends StatelessWidget {
+  const Hadeth({super.key});
 
   @override
   Widget build(BuildContext context) {
