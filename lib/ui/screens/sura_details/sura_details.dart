@@ -37,8 +37,8 @@ class _SuraDetailsState extends State<SuraDetails> {
           : Center(
               child: Container(
                 margin: const EdgeInsets.all(20),
-                height: MediaQuery.of(context).size.height * 0.8,
-                width: MediaQuery.of(context).size.width * 0.8,
+                height: MediaQuery.of(context).size.height * 1,
+                width: MediaQuery.of(context).size.width * 1,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: AppColor.white),
@@ -77,10 +77,11 @@ class _SuraDetailsState extends State<SuraDetails> {
                     const SizedBox(
                       height: 24,
                     ),
-                    SingleChildScrollView(
-                      child: Expanded(
+                    Expanded(
+                      child: SingleChildScrollView(
                         child: Text(
                           fileContent,
+                          textAlign: TextAlign.center,
                           textDirection: TextDirection.rtl,
                           style: AppStyle.titleTextStyle.copyWith(fontSize: 20),
                         ),

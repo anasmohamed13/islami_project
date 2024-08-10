@@ -6,7 +6,7 @@ import 'package:islamicproject/ui/utils/app_assets.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-  static const String RouteName = 'splash';
+  static const String routeName = 'splash';
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, HomeScreen.RouteName);
+      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
     });
     super.initState();
   }
