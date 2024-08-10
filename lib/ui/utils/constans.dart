@@ -1,4 +1,5 @@
 abstract class Constant {
+  static const String hadethFilePath = 'assets/files/ahadeth.txt';
   static const List<String> suraNames = [
     "الفاتحه",
     "البقرة",

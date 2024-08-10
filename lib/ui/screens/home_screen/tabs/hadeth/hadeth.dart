@@ -1,11 +1,29 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:islamicproject/ui/screens/hadeth_details/hadeth_details.dart';
 import 'package:islamicproject/ui/utils/app_assets.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
 import 'package:islamicproject/ui/utils/app_styles.dart';
 import 'package:islamicproject/ui/utils/constans.dart';
 
-class Hadeth extends StatelessWidget {
-  const Hadeth({super.key});
+import '../../../../../models/hadeth_model.dart';
+
+class Ahadeth extends StatefulWidget {
+  static List<Hadeth> hadethList = [];
+  const Ahadeth({super.key});
+
+  @override
+  State<Ahadeth> createState() => _AhadethState();
+}
+
+class _AhadethState extends State<Ahadeth> {
+  @override
+  void initState() {
+    readHadethFile();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +57,7 @@ class Hadeth extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'Name',
-                          style: AppStyle.titleTextStyle,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          'Verses',
+                          'Ahadeth',
                           style: AppStyle.titleTextStyle,
                           textAlign: TextAlign.center,
                         ),
@@ -61,13 +72,9 @@ class Hadeth extends StatelessWidget {
                     thickness: 3,
                     color: AppColor.primaryColor,
                   ),
-                  Expanded(child: buildSurasList()),
+                  Expanded(child: buildHadethList()),
                 ],
               ),
-              const VerticalDivider(
-                thickness: 3,
-                color: AppColor.primaryColor,
-              )
             ],
           ),
         ),
@@ -75,25 +82,41 @@ class Hadeth extends StatelessWidget {
     );
   }
 
-  Widget buildSurasList() => ListView.builder(
-        itemCount: Constant.suraNames.length,
-        itemBuilder: (context, index) => InkWell(
-          child: Row(
-            children: [
-              Expanded(
+  Future readHadethFile() async {
+    String ahadethFileContent =
+        await rootBundle.loadString(Constant.hadethFilePath);
+    List<String> ahadethAsString = ahadethFileContent.split('#\r\n');
+    for (int i = 0; i < ahadethAsString.length; i++) {
+      String hadeth = ahadethAsString[i];
+      List<String> hadethLines = hadeth.split('\n');
+      String hadethName = hadethLines[0];
+      hadethLines.removeAt(0);
+      String hadethContent = hadethLines.join();
+      Ahadeth.hadethList.add(Hadeth(hadethName.trim(), hadethContent));
+    }
+    setState(() {});
+  }
+
+  Widget buildHadethList() => Ahadeth.hadethList.isEmpty
+      ? const CircularProgressIndicator()
+      : ListView.builder(
+          itemCount: Ahadeth.hadethList.length,
+          itemBuilder: (context, index) => InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, HadethDetails.routeName,
+                  arguments: Ahadeth.hadethList[index]);
+            },
+            child: Row(
+              children: [
+                Expanded(
                   child: Text(
-                Constant.suraNames[index],
-                style: AppStyle.titleTextStyle,
-                textAlign: TextAlign.center,
-              )),
-              Expanded(
-                  child: Text(
-                Constant.versesNumber[index].toString(),
-                style: AppStyle.titleTextStyle,
-                textAlign: TextAlign.center,
-              )),
-            ],
+                    Ahadeth.hadethList[index].title,
+                    style: AppStyle.titleTextStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      );
+        );
 }
