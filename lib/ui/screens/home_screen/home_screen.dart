@@ -5,6 +5,7 @@ import 'package:islamicproject/ui/screens/home_screen/tabs/hadeth/hadeth.dart';
 import 'package:islamicproject/ui/screens/home_screen/tabs/quran/quran.dart';
 import 'package:islamicproject/ui/screens/home_screen/tabs/radio/radio_islami.dart';
 import 'package:islamicproject/ui/screens/home_screen/tabs/sebha/sebha.dart';
+import 'package:islamicproject/ui/screens/home_screen/tabs/settings/settings.dart';
 import 'package:islamicproject/ui/utils/app_assets.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
 import 'package:islamicproject/ui/widgets/app_scaffold.dart';
@@ -19,7 +20,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedTabIndex = 0;
-  List<Widget> tabs = const [Quran(), Ahadeth(), Sebha(), RadioIslami()];
+  List<Widget> tabs = const [
+    Quran(),
+    Ahadeth(),
+    Sebha(),
+    RadioIslami(),
+    Settings()
+  ];
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -54,6 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
                 icon: ImageIcon(AssetImage((AppAssets.icRadio))),
                 label: 'Radio'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), label: 'settings'),
           ]),
     );
   }
