@@ -49,21 +49,22 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedItemColor: AppColor.accentcolor,
           selectedIconTheme: const IconThemeData(size: 38),
           unselectedIconTheme: const IconThemeData(size: 34),
-          items: const [
+          items: [
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage((AppAssets.icQuran))),
-                label: 'Quran'),
+                icon: const ImageIcon(AssetImage((AppAssets.icQuran))),
+                label: AppLocalizations.of(context)!.quran),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage((AppAssets.icHadeth))),
-                label: 'Ahadeth'),
+                icon: const ImageIcon(AssetImage((AppAssets.icHadeth))),
+                label: AppLocalizations.of(context)!.ahadeth),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage((AppAssets.icSebha))),
-                label: 'Sebha'),
+                icon: const ImageIcon(AssetImage((AppAssets.icSebha))),
+                label: AppLocalizations.of(context)!.sebha),
             BottomNavigationBarItem(
-                icon: ImageIcon(AssetImage((AppAssets.icRadio))),
-                label: 'Radio'),
+                icon: const ImageIcon(AssetImage((AppAssets.icRadio))),
+                label: AppLocalizations.of(context)!.radio),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings), label: 'settings'),
+                icon: const Icon(Icons.settings),
+                label: AppLocalizations.of(context)!.settings),
           ]),
     );
   }
