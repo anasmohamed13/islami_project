@@ -9,6 +9,7 @@ import 'package:islamicproject/ui/screens/home_screen/tabs/settings/settings.dar
 import 'package:islamicproject/ui/utils/app_assets.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
 import 'package:islamicproject/ui/widgets/app_scaffold.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
-      appBarTitle: 'islami',
+      appBarTitle: AppLocalizations.of(context)!.islami,
       body: tabs[selectedTabIndex],
       bottomNavigationBar: buildbottomNavigationBar(),
     );
