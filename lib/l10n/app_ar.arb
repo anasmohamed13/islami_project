@@ -2,5 +2,9 @@
     "islami": "إسلامي",
     "language": "اللغة",
     "mode": "الوضع",
-    "settings" : "الاعدادات"
+    "settings" : "الاعدادات",
+    "quran" : "قران",
+    "ahadeth":"احاديث",
+    "sebha":"سبحة",
+    "radio":"راديو"
 }

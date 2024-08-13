@@ -1,7 +1,11 @@
+// ignore_for_file: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
+
 import 'package:flutter/material.dart';
+import 'package:islamicproject/ui/provider/language_provider.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
 import 'package:islamicproject/ui/utils/app_styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -11,11 +15,12 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  static String selectedLanguage = 'en';
   bool isDarktheme = false;
+  late LanguageProvider provider;
 
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of(context);
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -48,14 +53,15 @@ class _SettingsState extends State<Settings> {
   }
 
   Widget buildLanguageDropDown() => DropdownButton(
+        value: provider.local,
         isExpanded: true,
-        value: selectedLanguage,
         items: const [
           DropdownMenuItem(value: 'ar', child: Text('العربية')),
           DropdownMenuItem(value: 'en', child: Text('English')),
         ],
         onChanged: (value) {
-          selectedLanguage = value ?? selectedLanguage;
+          provider.local = value ?? provider.local;
+          provider.notifyListeners;
           setState(() {});
         },
       );
