@@ -66,7 +66,7 @@ class _SettingsState extends State<Settings> {
                 style: Theme.of(context)
                     .textTheme
                     .displayLarge!
-                    .copyWith(fontSize: 20)),
+                    .copyWith(fontSize: 18)),
           ),
           DropdownMenuItem(
               value: 'en',
@@ -74,7 +74,7 @@ class _SettingsState extends State<Settings> {
                   style: Theme.of(context)
                       .textTheme
                       .displayLarge!
-                      .copyWith(fontSize: 20))),
+                      .copyWith(fontSize: 18))),
         ],
         onChanged: languageProvider.changeLang,
       );

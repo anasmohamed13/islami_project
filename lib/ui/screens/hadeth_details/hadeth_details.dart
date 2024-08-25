@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:islamicproject/models/hadeth_model.dart';
+import 'package:islamicproject/ui/provider/theme_provider.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
 import 'package:islamicproject/ui/widgets/app_scaffold.dart';
+import 'package:provider/provider.dart';
 
 class HadethDetails extends StatefulWidget {
   const HadethDetails({super.key});
@@ -12,6 +14,8 @@ class HadethDetails extends StatefulWidget {
   @override
   State<HadethDetails> createState() => _HadethDetailsState();
 }
+
+late ThemeProvider themeProvider;
 
 class _HadethDetailsState extends State<HadethDetails> {
   @override
@@ -25,6 +29,7 @@ class _HadethDetailsState extends State<HadethDetails> {
   }
 
   Widget buildHadethContent(String content) {
+    themeProvider = Provider.of(context);
     return Center(
       child: Container(
         margin: const EdgeInsets.all(20),
@@ -44,10 +49,9 @@ class _HadethDetailsState extends State<HadethDetails> {
                   content,
                   textAlign: TextAlign.center,
                   textDirection: TextDirection.rtl,
-                  style: Theme.of(context)
-                      .textTheme
-                      .displayLarge!
-                      .copyWith(fontSize: 20),
+                  style: themeProvider.isDarkTheme
+                      ? const TextStyle(color: AppColor.accentDark)
+                      : const TextStyle(color: AppColor.accent),
                 ),
               ),
             )

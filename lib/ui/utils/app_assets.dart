@@ -10,4 +10,7 @@ abstract class AppAssets {
   static const String headSebhaLogo = 'assets/images/head_sebha_logo.png';
   static const String bodySebhaLogo = 'assets/images/body_sebha_logo.png';
   static const String darkBackGround = 'assets/images/dark_bg.png';
+  static const String bodySebhaDark = 'assets/images/body_sebha_dark.png';
+  static const String headSebhaDark = 'assets/images/head_sebha_dark.png';
+  static const String splashDark = 'assets/images/splash_dark.png';
 }

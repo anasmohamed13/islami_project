@@ -24,12 +24,12 @@ class _HomeScreenState extends State<HomeScreen> {
   late ThemeProvider themeProvider;
 
   int selectedTabIndex = 0;
-  List<Widget> tabs = const [
-    Quran(),
-    Ahadeth(),
-    Sebha(),
-    RadioIslami(),
-    Settings()
+  List<Widget> tabs = [
+    const Quran(),
+    const Ahadeth(),
+    const Sebha(),
+    const RadioIslami(),
+    const Settings()
   ];
   @override
   Widget build(BuildContext context) {

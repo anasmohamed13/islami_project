@@ -1,8 +1,10 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter/material.dart';
+import 'package:islamicproject/ui/provider/theme_provider.dart';
 import 'package:islamicproject/ui/screens/home_screen/home_screen.dart';
 import 'package:islamicproject/ui/utils/app_assets.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamicproject/models/sura_details_model.dart';
+import 'package:islamicproject/ui/screens/hadeth_details/hadeth_details.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
 import 'package:islamicproject/ui/widgets/app_scaffold.dart';
 
@@ -52,10 +53,11 @@ class _SuraDetailsState extends State<SuraDetails> {
                       children: [
                         Text(
                           'سورة ${args.suraNames}',
-                          style: const TextStyle(
-                              fontSize: 24,
-                              color: AppColor.accent,
-                              fontWeight: FontWeight.w600),
+                          style: themeProvider.isDarkTheme
+                              ? const TextStyle(
+                                  color: AppColor.accentDark, fontSize: 26)
+                              : const TextStyle(
+                                  color: AppColor.accent, fontSize: 26),
                         ),
                         const SizedBox(
                           width: 10,
@@ -82,10 +84,11 @@ class _SuraDetailsState extends State<SuraDetails> {
                           fileContent,
                           textAlign: TextAlign.center,
                           textDirection: TextDirection.rtl,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayLarge!
-                              .copyWith(fontSize: 20),
+                          style: themeProvider.isDarkTheme
+                              ? const TextStyle(
+                                  color: AppColor.accentDark, fontSize: 26)
+                              : const TextStyle(
+                                  color: AppColor.accent, fontSize: 26),
                         ),
                       ),
                     )
