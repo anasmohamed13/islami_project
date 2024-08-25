@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:islamicproject/ui/provider/language_provider.dart';
+import 'package:islamicproject/ui/provider/theme_provider.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
-import 'package:islamicproject/ui/utils/app_styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -15,12 +15,13 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  bool isDarktheme = false;
-  late LanguageProvider provider;
+  late ThemeProvider themeProvider;
+  late LanguageProvider languageProvider;
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of(context);
+    languageProvider = Provider.of(context);
+    themeProvider = Provider.of(context);
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -31,7 +32,7 @@ class _SettingsState extends State<Settings> {
             children: [
               Text(
                 AppLocalizations.of(context)!.settings,
-                style: AppStyle.titleTextStyle,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
             ],
           ),
@@ -40,7 +41,10 @@ class _SettingsState extends State<Settings> {
           ),
           Text(
             AppLocalizations.of(context)!.language,
-            style: AppStyle.titleTextStyle.copyWith(fontSize: 20),
+            style: Theme.of(context)
+                .textTheme
+                .displayLarge!
+                .copyWith(fontSize: 20),
           ),
           buildLanguageDropDown(),
           const SizedBox(
@@ -53,17 +57,26 @@ class _SettingsState extends State<Settings> {
   }
 
   Widget buildLanguageDropDown() => DropdownButton(
-        value: provider.local,
+        value: languageProvider.local,
         isExpanded: true,
-        items: const [
-          DropdownMenuItem(value: 'ar', child: Text('العربية')),
-          DropdownMenuItem(value: 'en', child: Text('English')),
+        items: [
+          DropdownMenuItem(
+            value: 'ar',
+            child: Text('العربية',
+                style: Theme.of(context)
+                    .textTheme
+                    .displayLarge!
+                    .copyWith(fontSize: 18)),
+          ),
+          DropdownMenuItem(
+              value: 'en',
+              child: Text('English',
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayLarge!
+                      .copyWith(fontSize: 18))),
         ],
-        onChanged: (value) {
-          provider.local = value ?? provider.local;
-          provider.notifyListeners;
-          setState(() {});
-        },
+        onChanged: languageProvider.changeLang,
       );
 
   Widget buildThemeSwitch() => Row(
@@ -71,14 +84,17 @@ class _SettingsState extends State<Settings> {
         children: [
           Text(
             AppLocalizations.of(context)!.mode,
-            style: AppStyle.titleTextStyle.copyWith(fontSize: 20),
+            style: Theme.of(context)
+                .textTheme
+                .displayLarge!
+                .copyWith(fontSize: 20),
           ),
           Switch(
-              activeColor: AppColor.primaryColor,
-              value: isDarktheme,
+              activeColor: AppColor.primary,
+              value: themeProvider.isDarkTheme,
               onChanged: (value) {
-                isDarktheme = value;
-                setState(() {});
+                themeProvider.newTheme =
+                    value ? ThemeMode.dark : ThemeMode.light;
               }),
         ],
       );

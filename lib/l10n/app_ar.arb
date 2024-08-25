@@ -6,5 +6,8 @@
     "quran" : "قران",
     "ahadeth":"احاديث",
     "sebha":"سبحة",
-    "radio":"راديو"
+    "radio":"راديو",
+    "praiseAllah" : "سبحان الله",
+    "thanksForAllah" : "الحمدلله",
+    "allahAkbr" : "الله أكبر"
 }

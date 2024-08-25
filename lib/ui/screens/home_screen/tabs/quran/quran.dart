@@ -5,7 +5,6 @@ import 'package:islamicproject/models/sura_details_model.dart';
 import 'package:islamicproject/ui/screens/sura_details/sura_details.dart';
 import 'package:islamicproject/ui/utils/app_assets.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
-import 'package:islamicproject/ui/utils/app_styles.dart';
 import 'package:islamicproject/ui/utils/constans.dart';
 
 class Quran extends StatelessWidget {
@@ -33,25 +32,25 @@ class Quran extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     height: 3,
-                    color: AppColor.primaryColor,
+                    color: AppColor.primary,
                   ),
                   const SizedBox(
                     height: 9,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Expanded(
                         child: Text(
                           'Name',
-                          style: AppStyle.titleTextStyle,
+                          style: Theme.of(context).textTheme.displayLarge,
                           textAlign: TextAlign.center,
                         ),
                       ),
                       Expanded(
                         child: Text(
                           'Verses',
-                          style: AppStyle.titleTextStyle,
+                          style: Theme.of(context).textTheme.displayLarge,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -63,14 +62,14 @@ class Quran extends StatelessWidget {
                   const Divider(
                     height: 3,
                     thickness: 3,
-                    color: AppColor.primaryColor,
+                    color: AppColor.primary,
                   ),
                   Expanded(child: buildSurasList()),
                 ],
               ),
               const VerticalDivider(
                 thickness: 3,
-                color: AppColor.primaryColor,
+                color: AppColor.primary,
               )
             ],
           ),
@@ -93,13 +92,13 @@ class Quran extends StatelessWidget {
               Expanded(
                   child: Text(
                 Constant.suraNames[index],
-                style: AppStyle.titleTextStyle,
+                style: Theme.of(context).textTheme.displayLarge,
                 textAlign: TextAlign.center,
               )),
               Expanded(
                   child: Text(
                 Constant.versesNumber[index].toString(),
-                style: AppStyle.titleTextStyle,
+                style: Theme.of(context).textTheme.displayLarge,
                 textAlign: TextAlign.center,
               )),
             ],
