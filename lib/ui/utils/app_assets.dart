@@ -9,4 +9,5 @@ abstract class AppAssets {
   static const String ahadethTabLogo = 'assets/images/hadeth_logo.png';
   static const String headSebhaLogo = 'assets/images/head_sebha_logo.png';
   static const String bodySebhaLogo = 'assets/images/body_sebha_logo.png';
+  static const String darkBackGround = 'assets/images/dark_bg.png';
 }

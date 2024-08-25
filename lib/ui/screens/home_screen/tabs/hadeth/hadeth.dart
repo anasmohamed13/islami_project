@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:islamicproject/ui/screens/hadeth_details/hadeth_details.dart';
 import 'package:islamicproject/ui/utils/app_assets.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
-import 'package:islamicproject/ui/utils/app_styles.dart';
 import 'package:islamicproject/ui/utils/constans.dart';
 
 import '../../../../../models/hadeth_model.dart';
@@ -47,18 +46,18 @@ class _AhadethState extends State<Ahadeth> {
                   Container(
                     width: double.infinity,
                     height: 3,
-                    color: AppColor.primaryColor,
+                    color: AppColor.primary,
                   ),
                   const SizedBox(
                     height: 9,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Expanded(
                         child: Text(
                           'Ahadeth',
-                          style: AppStyle.titleTextStyle,
+                          style: Theme.of(context).textTheme.displayLarge,
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -70,7 +69,7 @@ class _AhadethState extends State<Ahadeth> {
                   const Divider(
                     height: 3,
                     thickness: 3,
-                    color: AppColor.primaryColor,
+                    color: AppColor.primary,
                   ),
                   Expanded(child: buildHadethList()),
                 ],
@@ -111,7 +110,7 @@ class _AhadethState extends State<Ahadeth> {
                 Expanded(
                   child: Text(
                     Ahadeth.hadethList[index].title,
-                    style: AppStyle.titleTextStyle,
+                    style: Theme.of(context).textTheme.displayLarge,
                     textAlign: TextAlign.center,
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islamicproject/ui/utils/app_colors.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeMode currentTheme = ThemeMode.light;
@@ -8,4 +9,6 @@ class ThemeProvider extends ChangeNotifier {
     currentTheme = themeMode;
     notifyListeners();
   }
+
+  Color get primary => isDarkTheme ? AppColor.primaryDark : AppColor.primary;
 }

@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:islamicproject/models/hadeth_model.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
-import 'package:islamicproject/ui/utils/app_styles.dart';
 import 'package:islamicproject/ui/widgets/app_scaffold.dart';
 
 class HadethDetails extends StatefulWidget {
@@ -45,7 +44,10 @@ class _HadethDetailsState extends State<HadethDetails> {
                   content,
                   textAlign: TextAlign.center,
                   textDirection: TextDirection.rtl,
-                  style: AppStyle.titleTextStyle.copyWith(fontSize: 20),
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayLarge!
+                      .copyWith(fontSize: 20),
                 ),
               ),
             )

@@ -1,18 +1,19 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
+import 'package:islamicproject/ui/provider/theme_provider.dart';
 import 'package:islamicproject/ui/screens/home_screen/tabs/hadeth/hadeth.dart';
 import 'package:islamicproject/ui/screens/home_screen/tabs/quran/quran.dart';
 import 'package:islamicproject/ui/screens/home_screen/tabs/radio/radio_islami.dart';
 import 'package:islamicproject/ui/screens/home_screen/tabs/sebha/sebha.dart';
 import 'package:islamicproject/ui/screens/home_screen/tabs/settings/settings.dart';
 import 'package:islamicproject/ui/utils/app_assets.dart';
-import 'package:islamicproject/ui/utils/app_colors.dart';
 import 'package:islamicproject/ui/widgets/app_scaffold.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
   static const String routeName = 'home';
 
   @override
@@ -20,6 +21,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late ThemeProvider themeProvider;
+
   int selectedTabIndex = 0;
   List<Widget> tabs = const [
     Quran(),
@@ -30,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    themeProvider = Provider.of(context);
     return AppScaffold(
       appBarTitle: AppLocalizations.of(context)!.islami,
       body: tabs[selectedTabIndex],
@@ -39,14 +43,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Theme buildbottomNavigationBar() {
     return Theme(
-      data: ThemeData(canvasColor: AppColor.primaryColor),
+      data: Theme.of(context).copyWith(canvasColor: themeProvider.primary),
       child: BottomNavigationBar(
           onTap: (index) {
             selectedTabIndex = index;
             setState(() {});
           },
           currentIndex: selectedTabIndex,
-          selectedItemColor: AppColor.accentcolor,
           selectedIconTheme: const IconThemeData(size: 38),
           unselectedIconTheme: const IconThemeData(size: 34),
           items: [

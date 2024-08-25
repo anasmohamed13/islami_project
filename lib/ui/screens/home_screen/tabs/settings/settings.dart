@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:islamicproject/ui/provider/language_provider.dart';
 import 'package:islamicproject/ui/provider/theme_provider.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
-import 'package:islamicproject/ui/utils/app_styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +32,7 @@ class _SettingsState extends State<Settings> {
             children: [
               Text(
                 AppLocalizations.of(context)!.settings,
-                style: AppStyle.titleTextStyle,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
             ],
           ),
@@ -42,7 +41,10 @@ class _SettingsState extends State<Settings> {
           ),
           Text(
             AppLocalizations.of(context)!.language,
-            style: AppStyle.titleTextStyle.copyWith(fontSize: 20),
+            style: Theme.of(context)
+                .textTheme
+                .displayLarge!
+                .copyWith(fontSize: 20),
           ),
           buildLanguageDropDown(),
           const SizedBox(
@@ -57,9 +59,22 @@ class _SettingsState extends State<Settings> {
   Widget buildLanguageDropDown() => DropdownButton(
         value: languageProvider.local,
         isExpanded: true,
-        items: const [
-          DropdownMenuItem(value: 'ar', child: Text('العربية')),
-          DropdownMenuItem(value: 'en', child: Text('English')),
+        items: [
+          DropdownMenuItem(
+            value: 'ar',
+            child: Text('العربية',
+                style: Theme.of(context)
+                    .textTheme
+                    .displayLarge!
+                    .copyWith(fontSize: 20)),
+          ),
+          DropdownMenuItem(
+              value: 'en',
+              child: Text('English',
+                  style: Theme.of(context)
+                      .textTheme
+                      .displayLarge!
+                      .copyWith(fontSize: 20))),
         ],
         onChanged: languageProvider.changeLang,
       );
@@ -69,10 +84,13 @@ class _SettingsState extends State<Settings> {
         children: [
           Text(
             AppLocalizations.of(context)!.mode,
-            style: AppStyle.titleTextStyle.copyWith(fontSize: 20),
+            style: Theme.of(context)
+                .textTheme
+                .displayLarge!
+                .copyWith(fontSize: 20),
           ),
           Switch(
-              activeColor: AppColor.primaryColor,
+              activeColor: AppColor.primary,
               value: themeProvider.isDarkTheme,
               onChanged: (value) {
                 themeProvider.newTheme =

@@ -48,7 +48,7 @@ class IslamicApp extends StatelessWidget {
       locale: Locale(languageprovider.local),
       routes: {
         SplashScreen.routeName: (context) => const SplashScreen(),
-        HomeScreen.routeName: (context) => const HomeScreen(),
+        HomeScreen.routeName: (context) => HomeScreen(),
         SuraDetails.routeName: (context) => const SuraDetails(),
         HadethDetails.routeName: (context) => const HadethDetails(),
       },
