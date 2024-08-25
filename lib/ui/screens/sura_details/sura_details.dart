@@ -3,9 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islamicproject/models/sura_details_model.dart';
-import 'package:islamicproject/ui/screens/hadeth_details/hadeth_details.dart';
+import 'package:islamicproject/ui/provider/theme_provider.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
 import 'package:islamicproject/ui/widgets/app_scaffold.dart';
+import 'package:provider/provider.dart';
 
 class SuraDetails extends StatefulWidget {
   const SuraDetails({super.key});
@@ -19,9 +20,11 @@ class _SuraDetailsState extends State<SuraDetails> {
   late SuraDetailsArgs args;
 
   String fileContent = '';
+  late ThemeProvider themeProvider;
 
   @override
   Widget build(BuildContext context) {
+    themeProvider = Provider.of(context);
     args = ModalRoute.of(context)!.settings.arguments as SuraDetailsArgs;
     if (fileContent.isEmpty) {
       readFileO();
@@ -51,14 +54,12 @@ class _SuraDetailsState extends State<SuraDetails> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'سورة ${args.suraNames}',
-                          style: themeProvider.isDarkTheme
-                              ? const TextStyle(
-                                  color: AppColor.accentDark, fontSize: 26)
-                              : const TextStyle(
-                                  color: AppColor.accent, fontSize: 26),
-                        ),
+                        Text('سورة ${args.suraNames}',
+                            style: themeProvider.isDarkTheme
+                                ? const TextStyle(
+                                    color: AppColor.primary, fontSize: 26)
+                                : const TextStyle(
+                                    color: AppColor.accent, fontSize: 26)),
                         const SizedBox(
                           width: 10,
                         ),
@@ -80,16 +81,14 @@ class _SuraDetailsState extends State<SuraDetails> {
                     ),
                     Expanded(
                       child: SingleChildScrollView(
-                        child: Text(
-                          fileContent,
-                          textAlign: TextAlign.center,
-                          textDirection: TextDirection.rtl,
-                          style: themeProvider.isDarkTheme
-                              ? const TextStyle(
-                                  color: AppColor.accentDark, fontSize: 26)
-                              : const TextStyle(
-                                  color: AppColor.accent, fontSize: 26),
-                        ),
+                        child: Text(fileContent,
+                            textAlign: TextAlign.center,
+                            textDirection: TextDirection.rtl,
+                            style: themeProvider.isDarkTheme
+                                ? const TextStyle(
+                                    color: AppColor.primary, fontSize: 26)
+                                : const TextStyle(
+                                    color: AppColor.accent, fontSize: 26)),
                       ),
                     )
                   ],

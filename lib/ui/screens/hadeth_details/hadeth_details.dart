@@ -15,11 +15,11 @@ class HadethDetails extends StatefulWidget {
   State<HadethDetails> createState() => _HadethDetailsState();
 }
 
-late ThemeProvider themeProvider;
-
 class _HadethDetailsState extends State<HadethDetails> {
+  late ThemeProvider themeProvider;
   @override
   Widget build(BuildContext context) {
+    themeProvider = Provider.of(context);
     Hadeth hadeth = ModalRoute.of(context)!.settings.arguments as Hadeth;
 
     return AppScaffold(
@@ -29,7 +29,6 @@ class _HadethDetailsState extends State<HadethDetails> {
   }
 
   Widget buildHadethContent(String content) {
-    themeProvider = Provider.of(context);
     return Center(
       child: Container(
         margin: const EdgeInsets.all(20),
@@ -50,8 +49,8 @@ class _HadethDetailsState extends State<HadethDetails> {
                   textAlign: TextAlign.center,
                   textDirection: TextDirection.rtl,
                   style: themeProvider.isDarkTheme
-                      ? const TextStyle(color: AppColor.accentDark)
-                      : const TextStyle(color: AppColor.accent),
+                      ? const TextStyle(color: AppColor.primary, fontSize: 22)
+                      : const TextStyle(color: AppColor.accent, fontSize: 22),
                 ),
               ),
             )
