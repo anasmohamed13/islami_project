@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:islamicproject/ui/provider/language_provider.dart';
+import 'package:islamicproject/ui/provider/theme_provider.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
 import 'package:islamicproject/ui/utils/app_styles.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -15,12 +16,13 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
-  bool isDarktheme = false;
-  late LanguageProvider provider;
+  late ThemeProvider themeProvider;
+  late LanguageProvider languageProvider;
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of(context);
+    languageProvider = Provider.of(context);
+    themeProvider = Provider.of(context);
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -53,17 +55,13 @@ class _SettingsState extends State<Settings> {
   }
 
   Widget buildLanguageDropDown() => DropdownButton(
-        value: provider.local,
+        value: languageProvider.local,
         isExpanded: true,
         items: const [
           DropdownMenuItem(value: 'ar', child: Text('العربية')),
           DropdownMenuItem(value: 'en', child: Text('English')),
         ],
-        onChanged: (value) {
-          provider.local = value ?? provider.local;
-          provider.notifyListeners;
-          setState(() {});
-        },
+        onChanged: languageProvider.changeLang,
       );
 
   Widget buildThemeSwitch() => Row(
@@ -75,10 +73,10 @@ class _SettingsState extends State<Settings> {
           ),
           Switch(
               activeColor: AppColor.primaryColor,
-              value: isDarktheme,
+              value: themeProvider.isDarkTheme,
               onChanged: (value) {
-                isDarktheme = value;
-                setState(() {});
+                themeProvider.newTheme =
+                    value ? ThemeMode.dark : ThemeMode.light;
               }),
         ],
       );

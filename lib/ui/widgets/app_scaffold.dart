@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islamicproject/ui/utils/app_assets.dart';
 import 'package:islamicproject/ui/utils/app_colors.dart';
-import 'package:islamicproject/ui/utils/app_styles.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold(
@@ -21,13 +20,9 @@ class AppScaffold extends StatelessWidget {
         body: body,
         backgroundColor: AppColor.transparent,
         appBar: AppBar(
-          backgroundColor: AppColor.transparent,
-          elevation: 0,
           title: Text(
             appBarTitle ?? '',
-            style: AppStyle.appBarStyle,
           ),
-          centerTitle: true,
         ),
         bottomNavigationBar: bottomNavigationBar,
       ),
